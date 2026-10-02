@@ -54,6 +54,10 @@
           <span class="face-counter-label">명 인식됨</span>
         </div>
 
+        <div id="touchNotice" class="touch-notice">
+          <span>👆 화면을 터치/클릭하여 학생을 <strong>강제 등록</strong>하거나 <strong>삭제</strong>할 수 있습니다.</span>
+        </div>
+
         <div id="resultPanel" class="result-panel" hidden>
           <p class="result-eyebrow">오늘의 발표자</p>
           <div id="resultList" class="result-list"></div>
@@ -67,8 +71,38 @@
           <select id="deviceSelect"></select>
         </div>
 
+        <div class="field-row">
+          <button id="mirrorToggleBtn" class="pill-btn is-active" type="button" title="좌우 반전">↔️ 좌우 반전</button>
+          <button id="lockPositionsBtn" class="pill-btn" type="button" title="학생들이 움직여도 현재 박스 자리를 유지합니다">📌 위치 고정 (잠금)</button>
+        </div>
+
+        <!-- 교실 30명 강제 지원 도구 섹션 -->
+        <div class="tool-box">
+          <div class="tool-box-title">교실 30명 강제 인식 도구</div>
+          <div class="tool-btn-grid">
+            <button id="fill30Btn" class="action-btn" type="button" title="현재 인식된 학생 외 빈자리를 교실 배열로 채워 30명을 완성합니다">
+              ➕ 30명 자동 채우기
+            </button>
+            <button id="grid30Btn" class="action-btn-sub" type="button" title="교실 5×6 책상 배열로 30개 자리를 일괄 배치합니다">
+              🏫 30명 좌석 일괄배치
+            </button>
+          </div>
+          <div class="tool-btn-row">
+            <button id="clearAllFacesBtn" class="link-btn" type="button">🗑️ 등록된 얼굴 모두 지우기</button>
+          </div>
+        </div>
+
         <div class="field">
-          <label for="resolutionSelect">해상도 모드 (교실 크기·거리에 맞게 선택)</label>
+          <label for="sensitivitySelect">AI 인식 감도 (교실 다인원 최적화)</label>
+          <select id="sensitivitySelect">
+            <option value="ultra" selected>⚡ 초고감도 교실 모드 (30명·원거리 추천)</option>
+            <option value="high">🔍 고감도 모드 (20~25명)</option>
+            <option value="normal">🎯 표준 모드 (근거리)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="resolutionSelect">해상도 모드</label>
           <select id="resolutionSelect">
             <option value="close">근거리 · 720p (소규모 교실, 성능 우선)</option>
             <option value="standard" selected>표준 · 1080p (일반 교실 30명 내외)</option>
@@ -98,13 +132,12 @@
         <button id="resetBtn" class="reset-btn" hidden>다시 인식하기</button>
 
         <details class="tips">
-          <summary>인식이 잘 안 될 때</summary>
+          <summary>💡 교실 30명 인식 팁</summary>
           <ul>
-            <li>화면이 어둡거나 흐릿하게 보인다면 대부분 <strong>역광</strong>(창문·조명을 등지고 촬영) 또는 저조도 때문입니다. 위 <strong>밝기 보정</strong> 슬라이더를 올리거나, 창문을 등지지 않도록 카메라 방향을 바꿔주세요.</li>
-            <li>스마트폰을 카메라로 쓴다면 전면(셀피) 카메라보다 <strong>후면 카메라</strong>가 화질이 더 좋은 경우가 많습니다.</li>
-            <li>전자칠판 내장 카메라보다 <strong>외장 웹캠(1080p 이상)</strong>을 교실 뒤쪽까지 보이게 설치하면 인식률이 올라갑니다.</li>
-            <li>먼 자리 학생은 얼굴이 작게 잡혀 인식이 늦을 수 있어요. 잠시 기다리거나 카메라를 앞쪽으로 당겨보세요.</li>
-            <li>인식이 계속 어렵다면 <strong>번호 추첨 모드</strong>로 전환해 출석 번호로 뽑을 수 있습니다.</li>
+            <li><strong>화면 터치/클릭:</strong> AI가 놓친 학생이 있다면 화면을 직접 터치해 즉시 강제 등록할 수 있습니다. 잘못 등록된 박스를 다시 터치하면 삭제됩니다.</li>
+            <li><strong>30명 자동 채우기:</strong> 현재 감지된 학생들을 유지하면서, 나머지 학생 수를 자동으로 책상 위치에 채워 30명을 맞춰줍니다.</li>
+            <li><strong>위치 고정 (잠금):</strong> 학생들이 몸을 흔들거나 고개를 돌려도 박스가 사라지지 않도록 자리를 고정합니다.</li>
+            <li><strong>좌우 반전 토글:</strong> 전자칠판에서 학생들을 바라볼 때 좌우 방향이 실제 자리와 맞도록 언제든 전환 가능합니다.</li>
           </ul>
         </details>
 
